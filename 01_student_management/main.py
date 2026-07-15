@@ -13,6 +13,16 @@ def delete_student(students: list[dict[str, str | int | float]]) -> None:
     print(f"\nStudent \"{deleted_student['name']}\" has been deleted.")
 
 
+def display_student(student: dict[str, str | int | float]) -> None:
+    print(
+        "\n---------------------\n"
+        f"Name: {student['name']} \n"
+        f"Age: {student['age']} \n"
+        f"Score: {student['score']}\n"
+        "---------------------"
+    )
+
+
 def search_student(students: list[dict[str, str | int | float]]) -> None:
     if not students:
         print("\nStudents list is empty.")
@@ -22,13 +32,7 @@ def search_student(students: list[dict[str, str | int | float]]) -> None:
 
     for student in students:
         if search_query.lower() in student["name"].lower():
-            print(
-                "\n---------------------\n"
-                f"Name: {student['name']} \n"
-                f"Age: {student['age']} \n"
-                f"Score: {student['score']}\n"
-                "---------------------"
-            )
+            display_student(student)
             return
 
     print("\nStudent not found.")
@@ -40,13 +44,7 @@ def show_students(students: list[dict[str, str | int | float]]) -> None:
         return
 
     for student in students:
-        print(
-            "\n---------------------\n"
-            f"Name: {student['name']} \n"
-            f"Age: {student['age']} \n"
-            f"Score: {student['score']}\n"
-            "---------------------"
-        )
+        display_student(student)
 
 
 def add_student(students: list[dict[str, str | int | float]]) -> None:
