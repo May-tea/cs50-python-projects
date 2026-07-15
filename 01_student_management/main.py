@@ -82,6 +82,8 @@ def main():
             delete_student(students)
         case 5:
             print("Goodbye!")
+        case _:
+            print("Invalid option. Please select a number between 1 and 5.")
 
 
 main()
