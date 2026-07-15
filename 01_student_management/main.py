@@ -2,19 +2,21 @@ def show_students(students):
     if not students:
         print("\nNo students have been added yet.")
         return
-    
+
     for student in students:
         print(
-            f"Name: {student['name']}, Age: {student['age']}, Score: {student['score']}"
+            f"Name: {student['name']}, "
+            f"Age: {student['age']}, "
+            f"Score: {student['score']}"
         )
 
 
 def add_student():
     students = []
 
-    name = input("\nEnter student name: ")
-    age = int(input("Enter student age: "))
-    score = float(input("Enter student score: "))
+    name = input("\nEnter the student's name: ")
+    age = int(input("Enter the student's age: "))
+    score = float(input("Enter the student's score: "))
 
     students.append({"name": name, "age": age, "score": score})
 
@@ -29,7 +31,7 @@ def main():
             "3. Search Student\n"
             "4. Delete Student\n"
             "5. Exit\n\n"
-            "Enter your choice: "
+            "Select an option: "
         )
     )
 
