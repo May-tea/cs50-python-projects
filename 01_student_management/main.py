@@ -1,3 +1,15 @@
+def add_student():
+    students = []
+
+    name = input("\nEnter student name: ")
+    age = int(input("Enter student age: "))
+    score = float(input("Enter student score: "))
+
+    students.append({"name": name, "age": age, "score": score})
+
+    return students
+
+
 def main():
     choice = int(
         input(
@@ -9,6 +21,12 @@ def main():
             "Enter your choice: "
         )
     )
+
+    students = []
+
+    match choice:
+        case 1:
+            students = add_student()
 
 
 main()
