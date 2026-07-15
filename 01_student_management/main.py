@@ -1,3 +1,14 @@
+def show_students(students):
+    if not students:
+        print("\nNo students have been added yet.")
+        return
+    
+    for student in students:
+        print(
+            f"Name: {student['name']}, Age: {student['age']}, Score: {student['score']}"
+        )
+
+
 def add_student():
     students = []
 
@@ -27,6 +38,8 @@ def main():
     match choice:
         case 1:
             students = add_student()
+        case 2:
+            show_students(students)
 
 
 main()
