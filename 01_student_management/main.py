@@ -45,16 +45,12 @@ def show_students(students):
         )
 
 
-def add_student():
-    students = []
-
+def add_student(students):
     name = input("\nEnter the student's name: ")
     age = int(input("Enter the student's age: "))
     score = float(input("Enter the student's score: "))
 
     students.append({"name": name, "age": age, "score": score})
-
-    return students
 
 
 def main():
@@ -74,7 +70,7 @@ def main():
 
         match choice:
             case 1:
-                students = add_student()
+                add_student(students)
             case 2:
                 show_students(students)
             case 3:
