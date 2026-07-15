@@ -80,6 +80,8 @@ def main():
             search_student(students)
         case 4:
             delete_student(students)
+        case 5:
+            print("Goodbye!")
 
 
 main()
