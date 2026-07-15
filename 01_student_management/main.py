@@ -1,3 +1,18 @@
+def delete_student(students):
+    if not students:
+        print("\nStudents list is empty.")
+        return
+    
+    for number, student in enumerate(students, start=1):
+        print(f"{number}. {student['name']}")
+        
+    choice = int(input("Which student do you want to delete? "))
+    
+    deleted_student = students.pop(choice - 1)
+    
+    print(f"{deleted_student['name']} has been deleted.")       
+
+
 def search_student(students):
     if not students:
         print("\nStudents list is empty.")
@@ -63,6 +78,8 @@ def main():
             show_students(students)
         case 3:
             search_student(students)
+        case 4:
+            delete_student(students)
 
 
 main()
