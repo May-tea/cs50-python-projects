@@ -1,4 +1,4 @@
-def delete_student(students):
+def delete_student(students: list[dict[str, str | int | float]]) -> None:
     if not students:
         print("\nStudents list is empty.")
         return
@@ -6,19 +6,19 @@ def delete_student(students):
     for number, student in enumerate(students, start=1):
         print(f"\n{number}. {student['name']}")
 
-    choice = int(input("\nWhich student do you want to delete? "))
+    choice: int = int(input("\nWhich student do you want to delete? "))
 
-    deleted_student = students.pop(choice - 1)
+    deleted_student: dict[str, str | int | float] = students.pop(choice - 1)
 
     print(f"\nStudent \"{deleted_student['name']}\" has been deleted.")
 
 
-def search_student(students):
+def search_student(students: list[dict[str, str | int | float]]) -> None:
     if not students:
         print("\nStudents list is empty.")
         return
 
-    search_query = input("\nSearch by name: ")
+    search_query: str = input("\nSearch by name: ")
 
     for student in students:
         if search_query.lower() in student["name"].lower():
@@ -34,7 +34,7 @@ def search_student(students):
     print("\nStudent not found.")
 
 
-def show_students(students):
+def show_students(students: list[dict[str, str | int | float]]) -> None:
     if not students:
         print("\nNo students have been added yet.")
         return
@@ -49,19 +49,19 @@ def show_students(students):
         )
 
 
-def add_student(students):
-    name = input("\nEnter the student's name: ")
-    age = int(input("Enter the student's age: "))
-    score = float(input("Enter the student's score: "))
+def add_student(students: list[dict[str, str | int | float]]) -> None:
+    name: str = input("\nEnter the student's name: ")
+    age: int = int(input("Enter the student's age: "))
+    score: float = float(input("Enter the student's score: "))
 
     students.append({"name": name, "age": age, "score": score})
 
 
-def main():
-    students = []
+def main() -> None:
+    students: list[dict[str, str | int | float]] = []
 
     while True:
-        choice = int(
+        choice: int = int(
             input(
                 "\n1. Add Student\n"
                 "2. Show Students\n"
