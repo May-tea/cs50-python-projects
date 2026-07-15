@@ -23,9 +23,11 @@ def search_student(students):
     for student in students:
         if search_query.lower() in student["name"].lower():
             print(
-                f"\nName: {student['name']} \n"
+                "\n---------------------\n"
+                f"Name: {student['name']} \n"
                 f"Age: {student['age']} \n"
-                f"Score: {student['score']}"
+                f"Score: {student['score']}\n"
+                "---------------------"
             )
             return
 
@@ -39,9 +41,11 @@ def show_students(students):
 
     for student in students:
         print(
-            f"\nName: {student['name']} \n"
+            "\n---------------------\n"
+            f"Name: {student['name']} \n"
             f"Age: {student['age']} \n"
-            f"Score: {student['score']}"
+            f"Score: {student['score']}\n"
+            "---------------------"
         )
 
 
@@ -78,10 +82,10 @@ def main():
             case 4:
                 delete_student(students)
             case 5:
-                print("Goodbye!")
+                print("\nGoodbye!")
                 break
             case _:
-                print("Invalid option. Please select a number between 1 and 5.")
+                print("\nInvalid option. Please select a number between 1 and 5.")
 
 
 main()
