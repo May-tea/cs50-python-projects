@@ -2,15 +2,15 @@ def delete_student(students):
     if not students:
         print("\nStudents list is empty.")
         return
-    
+
     for number, student in enumerate(students, start=1):
-        print(f"{number}. {student['name']}")
-        
-    choice = int(input("Which student do you want to delete? "))
-    
+        print(f"\n{number}. {student['name']}")
+
+    choice = int(input("\nWhich student do you want to delete? "))
+
     deleted_student = students.pop(choice - 1)
-    
-    print(f"{deleted_student['name']} has been deleted.")       
+
+    print(f"\nStudent \"{deleted_student['name']}\" has been deleted.")
 
 
 def search_student(students):
@@ -18,18 +18,18 @@ def search_student(students):
         print("\nStudents list is empty.")
         return
 
-    search_query = input("Search by name: ")
+    search_query = input("\nSearch by name: ")
 
     for student in students:
         if search_query.lower() in student["name"].lower():
             print(
-                f"Name: {student['name']}, "
-                f"Age: {student['age']}, "
+                f"\nName: {student['name']} \n"
+                f"Age: {student['age']} \n"
                 f"Score: {student['score']}"
             )
             return
 
-    print("Student not found.")
+    print("\nStudent not found.")
 
 
 def show_students(students):
@@ -39,8 +39,8 @@ def show_students(students):
 
     for student in students:
         print(
-            f"Name: {student['name']}, "
-            f"Age: {student['age']}, "
+            f"\nName: {student['name']} \n"
+            f"Age: {student['age']} \n"
             f"Score: {student['score']}"
         )
 
@@ -59,7 +59,7 @@ def add_student():
 
 def main():
     students = []
-    
+
     while True:
         choice = int(
             input(
