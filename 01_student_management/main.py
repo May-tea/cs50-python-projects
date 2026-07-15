@@ -1,3 +1,22 @@
+def search_student(students):
+    if not students:
+        print("\nStudents list is empty.")
+        return
+
+    search_query = input("Search by name: ")
+
+    for student in students:
+        if search_query.lower() in student["name"].lower():
+            print(
+                f"Name: {student['name']}, "
+                f"Age: {student['age']}, "
+                f"Score: {student['score']}"
+            )
+            return
+
+    print("Student not found.")
+
+
 def show_students(students):
     if not students:
         print("\nNo students have been added yet.")
@@ -42,6 +61,8 @@ def main():
             students = add_student()
         case 2:
             show_students(students)
+        case 3:
+            search_student(students)
 
 
 main()
