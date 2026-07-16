@@ -1,7 +1,32 @@
 def add_student(students: list[dict[str, str | int | float]]) -> None:
-    name: str = input("\nEnter the student's name: ")
-    age: int = int(input("Enter the student's age: "))
-    score: float = float(input("Enter the student's score: "))
+    while True:
+        name: str = input("\nEnter the student's name: ").strip()
+        if not name.replace(" ", "").isalpha():
+            print("\nStudent's name must contain only letters and spaces.")
+            continue
+        if len(name) < 3:
+            print("\nStudent's name must be at least 3 characters long.")
+            continue
+
+        try:
+            age: int = int(input("Enter the student's age: "))
+            if not 1 <= age < 120:
+                print("\nAge must be between 1 and 119.")
+                continue
+        except ValueError:
+            print("\nAge must be a number.")
+            continue
+
+        try:
+            score: float = float(input("Enter the student's score: "))
+            if not 0 <= score <= 100:
+                print("\nScore must be a number between 0 and 100.")
+                continue
+        except ValueError:
+            print("\nScore must be a number.")
+            continue
+
+        break
 
     students.append({"name": name, "age": age, "score": score})
 
