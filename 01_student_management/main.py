@@ -5,16 +5,20 @@ def main() -> None:
     students: list[dict[str, str | int | float]] = []
 
     while True:
-        choice: int = int(
-            input(
-                "\n1. Add Student\n"
-                "2. Show Students\n"
-                "3. Search Student\n"
-                "4. Delete Student\n"
-                "5. Exit\n\n"
-                "Select an option: "
+        try:
+            choice: int = int(
+                input(
+                    "\n1. Add Student\n"
+                    "2. Show Students\n"
+                    "3. Search Student\n"
+                    "4. Delete Student\n"
+                    "5. Exit\n\n"
+                    "Select an option: "
+                )
             )
-        )
+        except ValueError:
+            print("\nInvalid input. Please enter a number between 1 and 5.")
+            continue
 
         match choice:
             case 1:
