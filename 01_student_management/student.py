@@ -1,5 +1,6 @@
 Student = dict[str, str | int | float]
 
+
 def add_student(students: list[Student]) -> None:
     while True:
         name: str = input("\nEnter the student's name: ").strip()
@@ -47,7 +48,16 @@ def search_student(students: list[Student]) -> None:
         print("\nStudents list is empty.")
         return
 
-    search_query: str = input("\nSearch by name: ")
+    while True:
+        search_query: str = input("\nEnter the student's name to search: ").strip()
+        if not search_query.replace(" ", "").isalpha():
+            print("\nSearch query must contain only letters and spaces.")
+            continue
+        if len(search_query) < 3:
+            print("\nSearch query must be at least 3 characters long.")
+            continue
+
+        break
 
     for student in students:
         if search_query.lower() in student["name"].lower():
