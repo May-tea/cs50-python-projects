@@ -75,7 +75,19 @@ def delete_student(students: list[Student]) -> None:
     for number, student in enumerate(students, start=1):
         print(f"\n{number}. {student['name']}")
 
-    choice: int = int(input("\nWhich student do you want to delete? "))
+    while True:
+        try:
+            choice: int = int(input("\nEnter the number of the student to delete: "))
+            if not 1 <= choice <= len(students):
+                print(
+                    f"Invalid selection. Please choose a number between 1 and {len(students)}."
+                )
+                continue
+        except ValueError:
+            print("\nInvalid input. Please enter a valid number.")
+            continue
+
+        break
 
     deleted_student: Student = students.pop(choice - 1)
 
