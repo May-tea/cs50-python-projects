@@ -1,4 +1,6 @@
-def add_student(students: list[dict[str, str | int | float]]) -> None:
+Student = dict[str, str | int | float]
+
+def add_student(students: list[Student]) -> None:
     while True:
         name: str = input("\nEnter the student's name: ").strip()
         if not name.replace(" ", "").isalpha():
@@ -31,7 +33,7 @@ def add_student(students: list[dict[str, str | int | float]]) -> None:
     students.append({"name": name, "age": age, "score": score})
 
 
-def show_students(students: list[dict[str, str | int | float]]) -> None:
+def show_students(students: list[Student]) -> None:
     if not students:
         print("\nNo students have been added yet.")
         return
@@ -40,7 +42,7 @@ def show_students(students: list[dict[str, str | int | float]]) -> None:
         display_student(student)
 
 
-def search_student(students: list[dict[str, str | int | float]]) -> None:
+def search_student(students: list[Student]) -> None:
     if not students:
         print("\nStudents list is empty.")
         return
@@ -55,7 +57,7 @@ def search_student(students: list[dict[str, str | int | float]]) -> None:
     print("\nStudent not found.")
 
 
-def delete_student(students: list[dict[str, str | int | float]]) -> None:
+def delete_student(students: list[Student]) -> None:
     if not students:
         print("\nStudents list is empty.")
         return
@@ -65,12 +67,12 @@ def delete_student(students: list[dict[str, str | int | float]]) -> None:
 
     choice: int = int(input("\nWhich student do you want to delete? "))
 
-    deleted_student: dict[str, str | int | float] = students.pop(choice - 1)
+    deleted_student: Student = students.pop(choice - 1)
 
     print(f"\nStudent \"{deleted_student['name']}\" has been deleted.")
 
 
-def display_student(student: dict[str, str | int | float]) -> None:
+def display_student(student: Student) -> None:
     print(
         "\n---------------------\n"
         f"Name: {student['name']} \n"
