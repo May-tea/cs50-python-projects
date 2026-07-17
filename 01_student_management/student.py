@@ -24,11 +24,8 @@ def remove_student(students: list[Student], index: int) -> bool:
 def add_student(students: list[Student]) -> None:
     while True:
         name: str = input("\nEnter the student's name: ").strip()
-        if not name.replace(" ", "").isalpha():
-            print("\nStudent's name must contain only letters and spaces.")
-            continue
-        if len(name) < 3:
-            print("\nStudent's name must be at least 3 characters long.")
+        if not validate_name(name):
+            print("\nName must contain only letters and spaces and be at least 3 characters long.")
             continue
 
         try:
