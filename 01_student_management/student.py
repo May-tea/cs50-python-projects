@@ -108,7 +108,7 @@ def delete_student(students: list[Student]) -> None:
 
         break
 
-    deleted_student: Student = students.pop(choice - 1)
+    deleted_student: Student = remove_student(students, choice - 1)
 
     print(f"\nStudent \"{deleted_student['name']}\" has been deleted.")
 
