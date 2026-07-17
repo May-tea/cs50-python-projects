@@ -1,4 +1,10 @@
-from student import create_student, validate_name, validate_age, validate_score
+from student import (
+    create_student,
+    validate_name,
+    validate_age,
+    validate_score,
+    remove_student,
+)
 
 
 def test_create_student():
@@ -28,6 +34,7 @@ def test_validate_age():
     assert not validate_age(120)
     assert not validate_age(-5)
 
+
 def test_validate_score():
     assert validate_score(90)
     assert validate_score(0)
@@ -35,3 +42,16 @@ def test_validate_score():
 
     assert not validate_score(-1)
     assert not validate_score(101)
+
+
+def test_remove_student():
+    students = [
+        {"name": "Ali", "age": 20, "score": 90},
+        {"name": "Sara", "age": 22, "score": 85},
+    ]
+
+    deleted = remove_student(students, 0)
+
+    assert deleted["name"] == "Ali"
+    assert students == [{"name": "Sara", "age": 22, "score": 85}]
+    assert len(students) == 1
