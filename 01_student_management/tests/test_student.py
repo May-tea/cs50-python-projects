@@ -1,4 +1,4 @@
-from student import create_student, validate_name
+from student import create_student, validate_name, validate_age
 
 
 def test_create_student():
@@ -8,11 +8,21 @@ def test_create_student():
     assert student["age"] == 20
     assert student["score"] == 90
 
+
 def test_validate_name():
     assert validate_name("Ali")
     assert validate_name("Ali Rezaei")
-    
+
     assert not validate_name("A")
     assert not validate_name("Ali123")
     assert not validate_name("")
     assert not validate_name(" ")
+
+def test_validate_age():
+    assert validate_age(20)
+    assert validate_age(1)
+    assert validate_age(119)
+
+    assert not validate_age(0)
+    assert not validate_age(120)
+    assert not validate_age(-5)
