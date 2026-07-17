@@ -30,7 +30,7 @@ def add_student(students: list[Student]) -> None:
 
         try:
             age: int = int(input("Enter the student's age: "))
-            if not 1 <= age < 120:
+            if not validate_age(age):
                 print("\nAge must be between 1 and 119.")
                 continue
         except ValueError:
