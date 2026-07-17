@@ -5,6 +5,10 @@ def create_student(name: str, age: int, score: float) -> Student:
     return {"name": name, "age": age, "score": score}
 
 
+def validate_name(name: str) -> bool:
+    return name.replace(" ", "").isalpha() and len(name) >= 3
+
+
 def add_student(students: list[Student]) -> None:
     while True:
         name: str = input("\nEnter the student's name: ").strip()
