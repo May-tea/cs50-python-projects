@@ -17,7 +17,7 @@ def validate_score(score: float) -> bool:
     return 0 <= score <= 100
 
 
-def remove_student(students: list[Student], index: int) -> bool:
+def remove_student(students: list[Student], index: int) -> Student:
     return students.pop(index)
 
 
