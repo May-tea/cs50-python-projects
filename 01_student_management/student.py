@@ -8,11 +8,17 @@ def create_student(name: str, age: int, score: float) -> Student:
 def validate_name(name: str) -> bool:
     return name.replace(" ", "").isalpha() and len(name) >= 3
 
+
 def validate_age(age: int) -> bool:
     return 1 <= age < 120
 
+
 def validate_score(score: float) -> bool:
     return 0 <= score <= 100
+
+
+def remove_student(students: list[Student], index: int) -> bool:
+    return students.pop(index)
 
 
 def add_student(students: list[Student]) -> None:
