@@ -39,7 +39,7 @@ def add_student(students: list[Student]) -> None:
 
         try:
             score: float = float(input("Enter the student's score: "))
-            if not 0 <= score <= 100:
+            if not validate_score(score):
                 print("\nScore must be a number between 0 and 100.")
                 continue
         except ValueError:
