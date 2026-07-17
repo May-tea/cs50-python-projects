@@ -25,7 +25,9 @@ def add_student(students: list[Student]) -> None:
     while True:
         name: str = input("\nEnter the student's name: ").strip()
         if not validate_name(name):
-            print("\nName must contain only letters and spaces and be at least 3 characters long.")
+            print(
+                "\nName must contain only letters and spaces and be at least 3 characters long."
+            )
             continue
 
         try:
@@ -48,7 +50,7 @@ def add_student(students: list[Student]) -> None:
 
         break
 
-    students.append({"name": name, "age": age, "score": score})
+    students.append(create_student(name, age, score))
 
 
 def show_students(students: list[Student]) -> None:
