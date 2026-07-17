@@ -11,6 +11,9 @@ def validate_name(name: str) -> bool:
 def validate_age(age: int) -> bool:
     return 1 <= age < 120
 
+def validate_score(score: float) -> bool:
+    return 0 <= score <= 100
+
 
 def add_student(students: list[Student]) -> None:
     while True:
