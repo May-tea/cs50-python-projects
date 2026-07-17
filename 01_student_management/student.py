@@ -1,6 +1,10 @@
 Student = dict[str, str | int | float]
 
 
+def create_student(name: str, age: int, score: float) -> Student:
+    return {"name": name, "age": age, "score": score}
+
+
 def add_student(students: list[Student]) -> None:
     while True:
         name: str = input("\nEnter the student's name: ").strip()
