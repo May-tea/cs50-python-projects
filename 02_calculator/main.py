@@ -1,3 +1,20 @@
+def calculate(number1, number2, operator):
+    match operator:
+        case "+":
+            return number1 + number2
+        case "-":
+            return number1 - number2
+        case "*":
+            return number1 * number2
+        case "/":
+            if number2 == 0:
+                return "division_error"
+
+            return number1 / number2
+        case _:
+            return "operator_error"
+
+
 def get_numbers():
     while True:
         try:
@@ -9,6 +26,7 @@ def get_numbers():
         else:
             return number1, number2
 
+
 def main():
     while True:
         number1, number2 = get_numbers()
@@ -16,22 +34,15 @@ def main():
         while True:
             operator = input("Enter an operator (+, -, *, /): ")
 
-            match operator:
-                case "+":
-                    result = number1 + number2
-                case "-":
-                    result = number1 - number2
-                case "*":
-                    result = number1 * number2
-                case "/":
-                    try:
-                        result = number1 / number2
-                    except ZeroDivisionError:
-                        print("Cannot divide by zero.")
-                        continue
-                case _:
-                    print("Invalid operator.")
-                    continue
+            result = calculate(number1, number2, operator)
+
+            if result == "division_error":
+                print("Cannot divide by zero.")
+                continue
+
+            if result == "operator_error":
+                print("Invalid operator.")
+                continue
 
             print(f"{number1:g} {operator} {number2:g} = {result:g}")
             break
