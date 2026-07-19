@@ -1,14 +1,17 @@
+def get_numbers():
+    while True:
+        try:
+            number1 = float(input("Enter your first number: "))
+            number2 = float(input("Enter your second number: "))
+        except ValueError:
+            print("Invalid number.")
+            continue
+        else:
+            return number1, number2
+
 def main():
     while True:
-        while True:
-            try:
-                number1 = float(input("Enter your first number: "))
-                number2 = float(input("Enter your second number: "))
-            except ValueError:
-                print("Invalid number.")
-                continue
-            else:
-                break
+        number1, number2 = get_numbers()
 
         while True:
             operator = input("Enter an operator (+, -, *, /): ")
