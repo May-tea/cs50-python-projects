@@ -1,7 +1,14 @@
 def main():
-    number1 = float(input("Enter your first number: "))
-    number2 = float(input("Enter your second number: "))
-    
+    while True:
+        try:
+            number1 = float(input("Enter your first number: "))
+            number2 = float(input("Enter your second number: "))
+        except ValueError:
+            print("Invalid number.")
+            continue
+        else:
+            break
+
     operator = input("Select an operator (+   -   *   /): ")
         
     print(
