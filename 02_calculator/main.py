@@ -3,8 +3,13 @@ def main():
         try:
             number1 = float(input("Enter your first number: "))
             number2 = float(input("Enter your second number: "))
+            
+            number1 / number2
         except ValueError:
             print("Invalid number.")
+            continue
+        except ZeroDivisionError:
+            print("Cannot divide by zero.")
             continue
         else:
             break
