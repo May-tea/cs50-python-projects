@@ -15,16 +15,19 @@ def calculate(number1, number2, operator):
             return "operator_error"
 
 
-def get_numbers():
+def get_number(prompt):
     while True:
         try:
-            number1 = float(input("Enter your first number: "))
-            number2 = float(input("Enter your second number: "))
+            return float(input(prompt))
         except ValueError:
             print("Invalid number.")
-            continue
-        else:
-            return number1, number2
+
+
+def get_numbers():
+    first_number = get_number("Enter your first number: ")
+    second_number = get_number("Enter your second number: ")
+
+    return first_number, second_number
 
 
 def main():
