@@ -14,13 +14,24 @@ def main():
         else:
             break
 
-    operator = input("Select an operator (+   -   *   /): ")
-        
-    print(
-        f"First number: {number1:g}\n"
-        f"Second number: {number2:g}\n"
-        f"Operator: {operator}\n"
-    )
+    while True:
+        operator = input("Enter an operator (+, -, *, /): ")
+
+        match operator:
+            case "+":
+                result = number1 + number2
+            case "-":
+                result = number1 - number2
+            case "*":
+                result = number1 * number2
+            case "/":
+                result = number1 / number2
+            case _:
+                print("Invalid operator.")
+                continue
+
+        print(f"{number1:g} {operator} {number2:g} = {result:g}")
+        break
 
 
 main()
