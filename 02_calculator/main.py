@@ -4,13 +4,8 @@ def main():
             try:
                 number1 = float(input("Enter your first number: "))
                 number2 = float(input("Enter your second number: "))
-
-                number1 / number2
             except ValueError:
                 print("Invalid number.")
-                continue
-            except ZeroDivisionError:
-                print("Cannot divide by zero.")
                 continue
             else:
                 break
@@ -26,7 +21,11 @@ def main():
                 case "*":
                     result = number1 * number2
                 case "/":
-                    result = number1 / number2
+                    try:
+                        result = number1 / number2
+                    except ZeroDivisionError:
+                        print("Cannot divide by zero.")
+                        continue
                 case _:
                     print("Invalid operator.")
                     continue
@@ -36,12 +35,12 @@ def main():
 
         while True:
             continue_calculation = input("Do you want to continue? (y/n): ").lower()
-            
+
             if continue_calculation in ("y", "n"):
                 break
-            
+
             print("Invalid input. Please enter 'y' or 'n'.")
-            
+
         if continue_calculation == "n":
             print("Goodbye!")
             break
