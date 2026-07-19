@@ -89,4 +89,5 @@ def main() -> None:
             break
 
 
-main()
+if __name__ == "__main__":
+    main()
