@@ -30,8 +30,21 @@ def get_numbers() -> tuple[float, float]:
     return first_number, second_number
 
 
+def show_history(history: list[str]) -> None:
+    if not history:
+        print("No calculations yet.")
+        return
+
+    print("\nCalculation History:")
+    for calculation in history:
+        print(calculation)
+
+
 def main() -> None:
+    history: list[str] = []
+    
     while True:
+
         number1, number2 = get_numbers()
 
         while True:
@@ -47,7 +60,10 @@ def main() -> None:
                 print("Invalid operator.")
                 continue
 
-            print(f"{number1:g} {operator} {number2:g} = {result:g}")
+            calculation: str = f"{number1:g} {operator} {number2:g} = {result:g}"
+            print(calculation)
+            history.append(calculation)
+
             break
 
         while True:
@@ -61,7 +77,9 @@ def main() -> None:
             print("Invalid input. Please enter 'y' or 'n'.")
 
         if continue_calculation == "n":
-            print("Goodbye!")
+            show_history(history)
+
+            print("\nGoodbye!")
             break
 
 
