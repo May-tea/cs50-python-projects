@@ -1,4 +1,12 @@
-def calculate(number1: float, number2: float, operator: str) -> float | str:
+class DivisionByZeroError(Exception):
+    pass
+
+
+class InvalidOperatorError(Exception):
+    pass
+
+
+def calculate(number1: float, number2: float, operator: str) -> float:
     match operator:
         case "+":
             return number1 + number2
@@ -8,11 +16,11 @@ def calculate(number1: float, number2: float, operator: str) -> float | str:
             return number1 * number2
         case "/":
             if number2 == 0:
-                return "division_error"
+                raise DivisionByZeroError
 
             return number1 / number2
         case _:
-            return "operator_error"
+            raise InvalidOperatorError
 
 
 def get_number(prompt: str) -> float:
@@ -42,21 +50,19 @@ def show_history(history: list[str]) -> None:
 
 def main() -> None:
     history: list[str] = []
-    
-    while True:
 
+    while True:
         number1, number2 = get_numbers()
 
         while True:
             operator: str = input("Enter an operator (+, -, *, /): ")
 
-            result: float | str = calculate(number1, number2, operator)
-
-            if result == "division_error":
+            try:
+                result: float = calculate(number1, number2, operator)
+            except DivisionByZeroError:
                 print("Cannot divide by zero.")
                 continue
-
-            if result == "operator_error":
+            except InvalidOperatorError:
                 print("Invalid operator.")
                 continue
 
