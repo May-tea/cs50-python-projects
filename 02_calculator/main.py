@@ -1,4 +1,4 @@
-def calculate(number1, number2, operator):
+def calculate(number1: float, number2: float, operator: str) -> float | str:
     match operator:
         case "+":
             return number1 + number2
@@ -15,7 +15,7 @@ def calculate(number1, number2, operator):
             return "operator_error"
 
 
-def get_number(prompt):
+def get_number(prompt: str) -> float:
     while True:
         try:
             return float(input(prompt))
@@ -23,21 +23,21 @@ def get_number(prompt):
             print("Invalid number.")
 
 
-def get_numbers():
-    first_number = get_number("Enter your first number: ")
-    second_number = get_number("Enter your second number: ")
+def get_numbers() -> tuple[float, float]:
+    first_number: float = get_number("Enter your first number: ")
+    second_number: float = get_number("Enter your second number: ")
 
     return first_number, second_number
 
 
-def main():
+def main() -> None:
     while True:
         number1, number2 = get_numbers()
 
         while True:
-            operator = input("Enter an operator (+, -, *, /): ")
+            operator: str = input("Enter an operator (+, -, *, /): ")
 
-            result = calculate(number1, number2, operator)
+            result: float | str = calculate(number1, number2, operator)
 
             if result == "division_error":
                 print("Cannot divide by zero.")
@@ -51,7 +51,9 @@ def main():
             break
 
         while True:
-            continue_calculation = input("Do you want to continue? (y/n): ").lower()
+            continue_calculation: str = input(
+                "Do you want to continue? (y/n): "
+            ).lower()
 
             if continue_calculation in ("y", "n"):
                 break
