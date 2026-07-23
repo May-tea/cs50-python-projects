@@ -1,12 +1,12 @@
 import re
 import csv
 
-FIELDNAMES = ["username", "password"]
-CSV_FILE = "data/users.csv"
+CSV_FILE: str = "data/users.csv"
+FIELDNAMES: list[str] = ["username", "password"]
 
 USERNAME_PATTERN: str = r"[a-zA-Z0-9_]{3,}"
 PASSWORD_PATTERN: str = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$"
-PASSWORD_ERROR = (
+PASSWORD_ERROR: str = (
     "Password must be at least 8 characters long "
     "and contain at least one uppercase letter, "
     "one lowercase letter, and one digit."
