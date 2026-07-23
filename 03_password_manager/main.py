@@ -27,7 +27,7 @@ def get_password() -> str:
 
 def username_exists(username: str) -> bool:
     try:
-        with open(CSV_FILE) as file:
+        with open(CSV_FILE, encoding="utf-8") as file:
             reader = csv.DictReader(file)
 
             for user in reader:
@@ -40,7 +40,7 @@ def username_exists(username: str) -> bool:
 
 
 def save_user(username: str, password: str) -> None:
-    with open(CSV_FILE, "a", newline="") as file:
+    with open(CSV_FILE, "a", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(file, fieldnames=FIELDNAMES)
 
         if file.tell() == 0:
