@@ -60,6 +60,8 @@ def main() -> None:
 
     save_user(username, password)
 
+    print("User registered successfully.")
+
 
 if __name__ == "__main__":
     main()
