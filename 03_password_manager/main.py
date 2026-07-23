@@ -3,16 +3,30 @@ import csv
 
 FIELDNAMES = ["username", "password"]
 CSV_FILE = "data/users.csv"
+
+USERNAME_PATTERN: str = r"[a-zA-Z0-9_]{3,}"
+PASSWORD_PATTERN: str = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$"
 PASSWORD_ERROR = (
     "Password must be at least 8 characters long "
     "and contain at least one uppercase letter, "
     "one lowercase letter, and one digit."
 )
-PASSWORD_PATTERN: str = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$"
 
 
 def get_username() -> str:
-    return input("Enter your username: ").strip()
+    while True:
+        username: str = input("Enter your username: ").strip()
+
+        if not username:
+            print("Username cannot be empty.")
+            continue
+
+        if re.fullmatch(USERNAME_PATTERN, username):
+            return username
+
+        print(
+            "Username must be at least 3 characters and contain only letters, numbers, and underscores."
+        )
 
 
 def get_password() -> str:
