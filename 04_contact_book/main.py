@@ -29,6 +29,23 @@ def save_contacts(contacts: list[Contact]) -> None:
         writer.writerows(contacts)
 
 
+def create_contact(name: str, phone: str, email: str) -> Contact:
+    return {"name": name, "phone": phone, "email": email}
+
+
+def add_contact(contacts: list[Contact]) -> None:
+    name: str = input("\nName: ")
+    phone: str = input("Phone: ")
+    email: str = input("Email: ")
+
+    contact = create_contact(name, phone, email)
+
+    contacts.append(contact)
+    save_contacts(contacts)
+
+    print("\nContact added successfully.")
+
+
 def main() -> None:
     contacts: list[Contact] = load_contacts()
 
@@ -45,7 +62,7 @@ def main() -> None:
 
         match choice:
             case "1":
-                print("Add")
+                add_contact(contacts)
             case "2":
                 print("Edit")
             case "3":
