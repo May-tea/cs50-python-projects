@@ -46,6 +46,22 @@ def add_contact(contacts: list[Contact]) -> None:
     print("\nContact added successfully.")
 
 
+def display_contact(contact: Contact) -> None:
+    print(f"Name : {contact['name']}")
+    print(f"Phone: {contact['phone']}")
+    print(f"Email: {contact['email']}")
+
+
+def show_contacts(contacts: list[Contact]) -> None:
+    if not contacts:
+        print("\nNo contacts found.")
+        return
+
+    for index, contact in enumerate(contacts, start=1):
+        print(f"\nContact {index}")
+        display_contact(contact)
+
+
 def main() -> None:
     contacts: list[Contact] = load_contacts()
 
@@ -70,7 +86,7 @@ def main() -> None:
             case "4":
                 print("Search")
             case "5":
-                print("Show All")
+                show_contacts(contacts)
             case "6":
                 break
             case _:
