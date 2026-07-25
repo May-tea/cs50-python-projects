@@ -3,6 +3,7 @@ import csv
 Contact = dict[str, str]
 
 CSV_FILE: str = "data/contacts.csv"
+FIELD_NAMES: list[str] = ["name", "phone", "email"]
 
 
 def load_contacts() -> list[Contact]:
@@ -18,6 +19,14 @@ def load_contacts() -> list[Contact]:
         pass
 
     return contacts
+
+
+def save_contacts(contacts: list[Contact]) -> None:
+    with open(CSV_FILE, "w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=FIELD_NAMES)
+
+        writer.writeheader()
+        writer.writerows(contacts)
 
 
 def main() -> None:
