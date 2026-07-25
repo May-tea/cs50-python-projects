@@ -1,4 +1,28 @@
-def main():
+import csv
+
+Contact = dict[str, str]
+
+CSV_FILE: str = "data/contacts.csv"
+
+
+def load_contacts() -> list[Contact]:
+    contacts: list[Contact] = []
+
+    try:
+        with open(CSV_FILE, newline="", encoding="utf-8") as file:
+            reader = csv.DictReader(file)
+
+            for row in reader:
+                contacts.append(dict(row))
+    except FileNotFoundError:
+        pass
+
+    return contacts
+
+
+def main() -> None:
+    contacts: list[Contact] = load_contacts()
+
     while True:
         print("""
 1. Add
@@ -8,7 +32,7 @@ def main():
 5. Show All
 6. Exit
 """)
-        choice = input("Choose: ")
+        choice: str = input("Choose: ")
 
         match choice:
             case "1":
