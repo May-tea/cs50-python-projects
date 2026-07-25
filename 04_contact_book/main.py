@@ -52,6 +52,18 @@ def display_contact(contact: Contact) -> None:
     print(f"Email: {contact['email']}")
 
 
+def search_contact(contacts: list[Contact]) -> None:
+    name: str = input("Name: ").strip().lower()
+
+    for contact in contacts:
+        if contacts["name"].lower() == name:
+            print()
+            display_contact(contact)
+            return
+
+    print("\nContact not found.")
+
+
 def show_contacts(contacts: list[Contact]) -> None:
     if not contacts:
         print("\nNo contacts found.")
@@ -84,7 +96,7 @@ def main() -> None:
             case "3":
                 print("Delete")
             case "4":
-                print("Search")
+                search_contact(contacts)
             case "5":
                 show_contacts(contacts)
             case "6":
