@@ -46,6 +46,30 @@ def add_contact(contacts: list[Contact]) -> None:
     print("\nContact added successfully.")
 
 
+def find_contact_index(contacts: list[Contact], name: str) -> int | None:
+    for index, contact in enumerate(contacts, start=1):
+        if contact["name"].lower() == name.lower():
+            return index
+
+    return None
+
+
+def delete_contact(contacts: list[Contact]) -> None:
+    name: str = input("Name: ").strip()
+
+    index = find_contact_index(contacts, name)
+
+    if index is None:
+        print("\nContact not found.")
+        return
+
+    deleted_contact = contacts.pop(index)
+
+    save_contacts(contacts)
+
+    print(f"\n{deleted_contact['name']} deleted successfully.")
+
+
 def display_contact(contact: Contact) -> None:
     print(f"Name : {contact['name']}")
     print(f"Phone: {contact['phone']}")
@@ -94,7 +118,7 @@ def main() -> None:
             case "2":
                 print("Edit")
             case "3":
-                print("Delete")
+                delete_contact(contacts)
             case "4":
                 search_contact(contacts)
             case "5":
