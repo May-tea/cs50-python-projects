@@ -79,13 +79,14 @@ def display_contact(contact: Contact) -> None:
 def search_contact(contacts: list[Contact]) -> None:
     name: str = input("Name: ").strip().lower()
 
-    for contact in contacts:
-        if contacts["name"].lower() == name:
-            print()
-            display_contact(contact)
-            return
+    index = find_contact_index(contacts, name)
 
-    print("\nContact not found.")
+    if index is None:
+        print("\nContact not found.")
+        return
+
+    print()
+    display_contact(contacts[index])
 
 
 def show_contacts(contacts: list[Contact]) -> None:
