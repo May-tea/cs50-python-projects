@@ -54,6 +54,24 @@ def find_contact_index(contacts: list[Contact], name: str) -> int | None:
     return None
 
 
+def edit_contact(contacts: list[Contact]) -> None:
+    name: str = input("Name: ").strip()
+
+    index = find_contact_index(contacts, name)
+
+    if index is None:
+        print("\nContact not found.")
+        return
+
+    new_name = input("Name: ")
+    new_phone = input("Phone: ")
+    new_email = input("Email: ")
+
+    contacts[index] = create_contact(new_name, new_phone, new_email)
+
+    save_contacts(contacts)
+
+
 def delete_contact(contacts: list[Contact]) -> None:
     name: str = input("Name: ").strip()
 
@@ -117,7 +135,7 @@ def main() -> None:
             case "1":
                 add_contact(contacts)
             case "2":
-                print("Edit")
+                edit_contact(contacts)
             case "3":
                 delete_contact(contacts)
             case "4":
