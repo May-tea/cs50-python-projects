@@ -1,3 +1,4 @@
+import statistics
 import csv
 from datetime import datetime
 
@@ -117,6 +118,20 @@ def find_expenses_by_date(expense_date: str) -> list[Expense]:
             date_expenses.append(expense)
 
     return date_expenses
+
+
+def calculate_average_expense() -> float | None:
+    expenses: list[Expense] = load_expenses()
+
+    if not expenses:
+        return None
+
+    amounts: list[float] = []
+
+    for expense in expenses:
+        amounts.append(expense["amount"])
+
+    return statistics.mean(amounts)
 
 
 def main() -> None:
