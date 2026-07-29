@@ -107,6 +107,18 @@ def find_largest_expense() -> Expense | None:
     return largest
 
 
+def find_expenses_by_date(expense_date: str) -> list[Expense]:
+    expenses: list[Expense] = load_expenses()
+
+    date_expenses: list[Expense] = []
+
+    for expense in expenses:
+        if expense_date == expense["date"]:
+            date_expenses.append(expense)
+
+    return date_expenses
+
+
 def main() -> None:
     expenses: list[Expense] = []
 
