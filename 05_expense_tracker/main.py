@@ -1,13 +1,17 @@
+import csv
 from datetime import datetime
 
 Expense = dict[str, str | float]
 
+CSV_FILE: str = "data/expenses.csv"
+FIELD_NAMES: list[str] = ["title", "amount", "date"]
 
-def create_expense(title: str, amount: float, date: str) -> Expense:
-    return {"title": title, "amount": amount, "date": date}
+
+def create_expense(title: str, amount: float, expense_date: str) -> Expense:
+    return {"title": title, "amount": amount, "date": expense_date}
 
 
-def add_expense(expenses: list[Expense]) -> None:
+def add_expense() -> Expense:
     while True:
         title: str = input("Enter Expense Title: ").strip()
 
@@ -45,15 +49,29 @@ def add_expense(expenses: list[Expense]) -> None:
             print("Invalid date. Please enter a valid date.")
             continue
 
-    expenses.append(create_expense(title, amount, expense_date))
-
     print("Expense added successfully.")
+
+    return create_expense(title, amount, expense_date)
+
+
+def save_expense(expense: Expense) -> None:
+    with open(CSV_FILE, "a", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=FIELD_NAMES)
+
+        if file.tell() == 0:
+            writer.writeheader()
+
+        writer.writerow(expense)
 
 
 def main() -> None:
     expenses: list[Expense] = []
 
-    add_expense(expenses)
+    expense = add_expense()
+
+    expenses.append(expense)
+
+    save_expense(expense)
 
 
 main()
