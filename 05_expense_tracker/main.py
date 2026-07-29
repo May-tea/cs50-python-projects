@@ -92,6 +92,21 @@ def calculate_total_expenses() -> float:
     return total
 
 
+def find_largest_expense() -> Expense | None:
+    expenses: list[Expense] = load_expenses()
+
+    if not expenses:
+        return None
+
+    largest: Expense = expenses[0]
+
+    for expense in expenses[1:]:
+        if largest["amount"] < expense["amount"]:
+            largest = expense
+
+    return largest
+
+
 def main() -> None:
     expenses: list[Expense] = []
 
