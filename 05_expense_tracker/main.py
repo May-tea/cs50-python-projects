@@ -64,6 +64,34 @@ def save_expense(expense: Expense) -> None:
         writer.writerow(expense)
 
 
+def load_expenses() -> list[Expense]:
+    expenses: list[Expense] = []
+
+    try:
+        with open(CSV_FILE, newline="", encoding="utf-8") as file:
+            reader = csv.DictReader(file)
+
+            for row in reader:
+                expenses.append(
+                    create_expense(row["title"], float(row["amount"]), row["date"])
+                )
+    except FileNotFoundError:
+        return []
+
+    return expenses
+
+
+def calculate_total_expenses() -> float:
+    expenses: list[Expense] = load_expenses()
+
+    total: float = 0.0
+
+    for expense in expenses:
+        total += expense["amount"]
+
+    return total
+
+
 def main() -> None:
     expenses: list[Expense] = []
 
