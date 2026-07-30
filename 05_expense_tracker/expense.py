@@ -7,6 +7,21 @@ def create_expense(title: str, amount: float, expense_date: str) -> Expense:
     return {"title": title, "amount": amount, "date": expense_date}
 
 
+def input_expense_date() -> str:
+    while True:
+        try:
+            expense_date: str = input("Enter expense date (YYYY-MM-DD): ")
+
+            datetime.strptime(expense_date, "%Y-%m-%d")
+
+            break
+        except ValueError:
+            print("Invalid date. Please enter a valid date.")
+            continue
+
+    return expense_date
+
+
 def add_expense() -> Expense:
     while True:
         title: str = input("Enter Expense Title: ").strip()
@@ -34,16 +49,7 @@ def add_expense() -> Expense:
             print("Invalid amount. Please enter a valid number.")
             continue
 
-    while True:
-        try:
-            expense_date: str = input("Enter expense date (YYYY-MM-DD): ")
-
-            datetime.strptime(expense_date, "%Y-%m-%d")
-
-            break
-        except ValueError:
-            print("Invalid date. Please enter a valid date.")
-            continue
+    expense_date = input_expense_date()
 
     print("Expense added successfully.")
 
