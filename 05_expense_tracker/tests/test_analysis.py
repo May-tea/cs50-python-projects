@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from analysis import calculate_total_expenses
+from analysis import calculate_total_expenses, find_largest_expense
 
 
 class TestAnalysis(unittest.TestCase):
@@ -44,6 +44,37 @@ class TestAnalysis(unittest.TestCase):
         # Assert
         expected: float = 0.0
         self.assertEqual(expected, total)
+
+    @patch("analysis.load_expenses")
+    def test_find_largest_expense(self, mock_load_expenses):
+        # Arrange
+        mock_load_expenses.return_value = [
+            {"title": "Food", "amount": 100.0, "date": "2026-07-30"},
+            {"title": "Laptop", "amount": 1500.0, "date": "2026-07-31"},
+            {"title": "Taxi", "amount": 50.0, "date": "2026-07-31"},
+        ]
+
+        # Act
+        largest = find_largest_expense()
+
+        # Assert
+        expected = {
+            "title": "Laptop",
+            "amount": 1500.0,
+            "date": "2026-07-31",
+        }
+        self.assertEqual(expected, largest)
+
+    @patch("analysis.load_expenses")
+    def test_find_largest_expense_with_no_expenses(self, mock_load_expenses):
+        # Arrange
+        mock_load_expenses.return_value = []
+
+        # Act
+        largest = find_largest_expense()
+
+        # Assert
+        self.assertIsNone(largest)
 
 
 if __name__ == "__main__":
