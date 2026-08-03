@@ -5,6 +5,7 @@ from analysis import (
     calculate_total_expenses,
     find_largest_expense,
     find_expenses_by_date,
+    calculate_average_expense,
 )
 
 
@@ -149,6 +150,45 @@ class TestAnalysis(unittest.TestCase):
 
         # Assert
         self.assertEqual([], date_expenses)
+
+    @patch("analysis.load_expenses")
+    def test_calculate_average_expense_with_multiple_expenses(self, mock_load_expenses):
+        # Arrange
+        mock_load_expenses.return_value = [
+            {
+                "title": "Food",
+                "amount": 100.0,
+                "date": "2026-07-30",
+            },
+            {
+                "title": "Taxi",
+                "amount": 50.0,
+                "date": "2026-07-30",
+            },
+            {
+                "title": "Book",
+                "amount": 150.0,
+                "date": "2026-07-31",
+            },
+        ]
+
+        # Act
+        average = calculate_average_expense()
+
+        # Assert
+        expected = 100.0
+        self.assertEqual(expected, average)
+
+    @patch("analysis.load_expenses")
+    def test_calculate_average_expense_with_no_expenses(self, mock_load_expenses):
+        # Arrange
+        mock_load_expenses.return_value = []
+
+        # Act
+        average = calculate_average_expense()
+
+        # Assert
+        self.assertIsNone(average)
 
 
 if __name__ == "__main__":
