@@ -58,6 +58,32 @@ def delete_book(books: list[Book]) -> None:
     print(f"\nBook '{deleted_book['title']}' deleted successfully.")
 
 
+def search_book(books: list[Book]) -> None:
+    if not books:
+        print("\nThere are no books in the library.\n")
+        return
+
+    while True:
+        query: str = input("\nEnter search query: ").strip().lower()
+
+        if not query:
+            print("\nTry something to search.")
+            continue
+
+        break
+
+    found: bool = False
+
+    for book in books:
+        if query in book["title"] or query in book["author"]:
+            print(f"\n{book['title']} - {book['author']} ({book['year']})")
+            found = True
+
+    if not found:
+        print("No books found.")
+        return
+
+
 def main() -> None:
     books: list[Book] = []
 
@@ -65,6 +91,8 @@ def main() -> None:
     print("\nBook added successfully.\n")
 
     delete_book(books)
+
+    search_book(books)
 
 
 main()
