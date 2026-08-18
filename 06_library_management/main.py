@@ -32,11 +32,39 @@ def create_book(title: str, author: str, year: int) -> Book:
     return {"title": title, "author": author, "year": year}
 
 
+def delete_book(books: list[Book]) -> None:
+    if not books:
+        print("\nThere are no books in the library.\n")
+        return
+
+    for index, book in enumerate(books, start=1):
+        print(f"{index}. {book['title']} - {book['author']} ({book['year']})")
+
+    while True:
+        try:
+            choice: int = int(input("\nEnter book number to delete: ").strip())
+
+            if not 1 <= choice <= len(books):
+                print("\nPlease enter a valid number.")
+                continue
+        except ValueError:
+            print("\nJust integers accepted.")
+            continue
+
+        break
+
+    deleted_book: Book = books.pop(choice - 1)
+
+    print(f"\nBook '{deleted_book['title']}' deleted successfully.")
+
+
 def main() -> None:
     books: list[Book] = []
 
     add_book(books)
-    print("\nBook added successfully.")
+    print("\nBook added successfully.\n")
+
+    delete_book(books)
 
 
 main()
