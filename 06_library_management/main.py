@@ -1,11 +1,4 @@
-from book import Book
-from library import (
-    add_book,
-    delete_book,
-    search_book,
-    borrow_book,
-    return_book,
-)
+from library import Library
 from storage import load_books
 
 
@@ -25,7 +18,9 @@ def display_menu() -> None:
 
 
 def main() -> None:
-    books: list[Book] = load_books()
+    library: Library = Library()
+
+    library.books = load_books()
 
     while True:
         display_menu()
@@ -42,15 +37,15 @@ def main() -> None:
 
         match choice:
             case 1:
-                add_book(books)
+                library.add_book()
             case 2:
-                delete_book(books)
+                library.delete_book()
             case 3:
-                search_book(books)
+                library.search_book()
             case 4:
-                borrow_book(books)
+                library.borrow_book()
             case 5:
-                return_book(books)
+                library.return_book()
             case 6:
                 print("\nGoodbye!")
                 break
