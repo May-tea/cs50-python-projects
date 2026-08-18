@@ -10,7 +10,16 @@ def save_books(books: list[Book]) -> None:
     with open(CSV_FILE, "w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(file, fieldnames=FIELD_NAMES)
         writer.writeheader()
-        writer.writerows(books)
+
+        for book in books:
+            writer.writerow(
+                {
+                    "title": book.title,
+                    "author": book.author,
+                    "year": book.year,
+                    "is_borrowed": book.is_borrowed,
+                }
+            )
 
 
 def load_books() -> list[Book]:
@@ -21,14 +30,11 @@ def load_books() -> list[Book]:
             reader = csv.DictReader(file)
 
             for row in reader:
-                books.append(
-                    {
-                        "title": row["title"],
-                        "author": row["author"],
-                        "year": int(row["year"]),
-                        "is_borrowed": row["is_borrowed"] == "True",
-                    }
-                )
+                book: Book = Book(row["title"], row["author"], int(row["year"]))
+
+                book.is_borrowed = row["is_borrowed"] == "True"
+
+                books.append(book)
 
     except FileNotFoundError:
         return []

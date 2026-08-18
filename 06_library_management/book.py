@@ -1,5 +1,6 @@
-Book = dict[str, str | int | bool]
-
-
-def create_book(title: str, author: str, year: int) -> Book:
-    return {"title": title, "author": author, "year": year, "is_borrowed": False}
+class Book:
+    def __init__(self, title: str, author: str, year: int):
+        self.title = title
+        self.author = author
+        self.year = year
+        self.is_borrowed = False
