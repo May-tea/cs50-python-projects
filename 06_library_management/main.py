@@ -27,6 +27,8 @@ def add_book(books: list[Book]) -> None:
 
     books.append(new_book)
 
+    print("\nBook added successfully.\n")
+
 
 def create_book(title: str, author: str, year: int) -> Book:
     return {"title": title, "author": author, "year": year, "is_borrowed": False}
@@ -124,17 +126,58 @@ def borrow_book(books: list[Book]) -> None:
     print(f"\nBook '{borrowed_book['title']}' borrowed successfully.")
 
 
+def return_book(books: list[Book]) -> None:
+    if not books:
+        print("\nThere are no books in the library.")
+        return
+
+    borrowed_books: list[Book] = []
+
+    for book in books:
+        if book["is_borrowed"]:
+            borrowed_books.append(book)
+
+    if not borrowed_books:
+        print("\nThere are no borrowed books.")
+        return
+
+    print("\nBorrowed books:\n")
+
+    for index, book in enumerate(borrowed_books, start=1):
+        print(f"{index}. {book['title']} - {book['author']} ({book['year']})")
+
+    while True:
+        try:
+            choice: int = int(input("Enter book number to return: "))
+
+            if not 1 <= choice <= len(borrowed_books):
+                print("\nPlease enter a valid number.")
+                continue
+        except ValueError:
+            print("\nJust integers accepted.")
+            continue
+
+        break
+
+    returned_book: Book = borrowed_books[choice - 1]
+
+    returned_book["is_borrowed"] = False
+
+    print(f"\nBook '{returned_book['title']}' returned successfully.")
+
+
 def main() -> None:
     books: list[Book] = []
 
     add_book(books)
-    print("\nBook added successfully.\n")
 
     delete_book(books)
 
     search_book(books)
 
     borrow_book(books)
+
+    return_book(books)
 
 
 main()
