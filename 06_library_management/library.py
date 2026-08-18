@@ -1,9 +1,10 @@
 from book import Book, create_book
+from storage import save_books
 
 
 def add_book(books: list[Book]) -> None:
     while True:
-        title: str = input("Enter book title: ").strip().lower()
+        title: str = input("\nEnter book title: ").strip().lower()
 
         if not title:
             print("\nTitle can not be empty.\n")
@@ -26,6 +27,8 @@ def add_book(books: list[Book]) -> None:
     new_book = create_book(title, author, year)
 
     books.append(new_book)
+
+    save_books(books)
 
     print("\nBook added successfully.\n")
 
@@ -52,6 +55,8 @@ def delete_book(books: list[Book]) -> None:
         break
 
     deleted_book: Book = books.pop(choice - 1)
+
+    save_books(books)
 
     print(f"\nBook '{deleted_book['title']}' deleted successfully.")
 
@@ -119,6 +124,8 @@ def borrow_book(books: list[Book]) -> None:
 
     borrowed_book["is_borrowed"] = True
 
+    save_books(books)
+
     print(f"\nBook '{borrowed_book['title']}' borrowed successfully.")
 
 
@@ -158,5 +165,7 @@ def return_book(books: list[Book]) -> None:
     returned_book: Book = borrowed_books[choice - 1]
 
     returned_book["is_borrowed"] = False
+
+    save_books(books)
 
     print(f"\nBook '{returned_book['title']}' returned successfully.")

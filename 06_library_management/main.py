@@ -6,6 +6,7 @@ from library import (
     borrow_book,
     return_book,
 )
+from storage import load_books
 
 
 def display_menu() -> None:
@@ -24,7 +25,7 @@ def display_menu() -> None:
 
 
 def main() -> None:
-    books: list[Book] = []
+    books: list[Book] = load_books()
 
     while True:
         display_menu()
