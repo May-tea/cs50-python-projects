@@ -12,7 +12,8 @@ def display_menu() -> None:
 1. Add student
 2. Show students
 3. Search student
-4. Exit          
+4. Delete student
+5. Exit          
 """)
 
 
@@ -84,6 +85,33 @@ def search_student() -> None:
         print(student)
 
 
+def delete_student() -> None:
+    students: list[Student] = school.get_students()
+
+    if not students:
+        print("\nStudents list is empty.")
+        return
+
+    for index, student in enumerate(students, start=1):
+        print(f"{index}. {student}")
+
+    try:
+        choice: int = int(input("\nChoose a student to delete: ").strip())
+
+        if not 1 <= choice <= len(students):
+            print("\nInvalid student number.")
+            return
+    except ValueError:
+        print("\nInvalid input. Please try again.")
+        return
+
+    student: Student = school.get_student(choice - 1)
+
+    school.remove_student(student)
+
+    print(f"\nStudent '{student.name}' deleted successfully.")
+
+
 def main() -> None:
     while True:
         display_menu()
@@ -91,8 +119,8 @@ def main() -> None:
         try:
             choice: int = int(input("\nChoose an option: ").strip())
 
-            if not 1 <= choice <= 4:
-                print("\nPlease choose a number between 1 and 4.")
+            if not 1 <= choice <= 5:
+                print("\nPlease choose a number between 1 and 5.")
                 continue
         except ValueError:
             print("\nInvalid input. Please try again.")
@@ -106,6 +134,8 @@ def main() -> None:
             case 3:
                 search_student()
             case 4:
+                delete_student()
+            case 5:
                 print("\nGoodbye!")
                 break
 
