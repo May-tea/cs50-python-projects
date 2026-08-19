@@ -42,3 +42,6 @@ class School:
 
     def get_students(self) -> list[Student]:
         return self.students
+
+    def get_student(self, index: int) -> Student:
+        return self.students[index]
