@@ -39,3 +39,6 @@ class School:
         scores: list[float] = [student.score for student in self.students]
 
         return statistics.mean(scores)
+
+    def get_students(self) -> list[Student]:
+        return self.students
