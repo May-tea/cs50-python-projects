@@ -27,3 +27,6 @@ class School:
         student.age = age
         student.email = email
         student.score = score
+
+    def sort_students_by_score(self) -> list[Student]:
+        return sorted(self.students, key=lambda student: student.score, reverse=True)
