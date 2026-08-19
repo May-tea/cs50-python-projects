@@ -1,4 +1,6 @@
 from src.school import School
+from src.student import Student
+from src.validators import validate_name, validate_age, validate_email, validate_score
 
 school: School = School()
 
@@ -10,6 +12,46 @@ def display_menu() -> None:
 1. Add student
 2. Exit          
 """)
+
+
+def add_student() -> None:
+    name: str = input("\nName: ").strip()
+
+    if not validate_name(name):
+        print("\nInvalid name.")
+        return
+
+    try:
+        age: int = int(input("\nAge: ").strip())
+    except ValueError:
+        print("\nAge must be an integer.")
+        return
+
+    if not validate_age(age):
+        print("\nInvalid age.")
+        return
+
+    email: str = input("\nEmail: ").strip()
+
+    if not validate_email(email):
+        print("\nInvalid email.")
+        return
+
+    try:
+        score: float = float(input("\nScore: ").strip())
+    except ValueError:
+        print("\nScore must be a number.")
+        return
+
+    if not validate_score(score):
+        print("\nInvalid score.")
+        return
+
+    student: Student = Student(name, age, email, score)
+
+    school.add_student(student)
+
+    print("\nStudent added successfully.")
 
 
 def main():
@@ -28,7 +70,7 @@ def main():
 
         match choice:
             case 1:
-                pass
+                add_student()
             case 2:
                 print("\nGoodbye!")
                 break
