@@ -19,3 +19,11 @@ class School:
                 found_students.append(student)
 
         return found_students
+
+    def edit_student(
+        self, student: Student, name: str, age: int, email: str, score: float
+    ) -> None:
+        student.name = name
+        student.age = age
+        student.email = email
+        student.score = score
