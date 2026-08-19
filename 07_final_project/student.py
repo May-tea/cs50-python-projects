@@ -4,3 +4,6 @@ class Student:
         self.age = age
         self.email = email
         self.score = score
+
+    def __str__(self) -> str:
+        return f"Name: {self.name} | Age: {self.age} | Email: {self.email} | Score: {self.score}"
