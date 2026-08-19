@@ -1,3 +1,4 @@
+import statistics
 from student import Student
 
 
@@ -30,3 +31,11 @@ class School:
 
     def sort_students_by_score(self) -> list[Student]:
         return sorted(self.students, key=lambda student: student.score, reverse=True)
+
+    def get_average_score(self) -> float:
+        if not self.students:
+            return 0.0
+
+        scores: list[float] = [student.score for student in self.students]
+
+        return statistics.mean(scores)
