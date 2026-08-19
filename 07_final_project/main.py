@@ -10,7 +10,8 @@ def display_menu() -> None:
 ===== Student Management System =====
 
 1. Add student
-2. Exit          
+2. Show students
+3. Exit          
 """)
 
 
@@ -54,14 +55,25 @@ def add_student() -> None:
     print("\nStudent added successfully.")
 
 
-def main():
+def show_students() -> None:
+    students: list[Student] = school.get_students()
+
+    if not students:
+        print("\nStudents list is empty.")
+        return
+
+    for student in students:
+        print(student)
+
+
+def main() -> None:
     while True:
         display_menu()
 
         try:
             choice: int = int(input("\nChoose an option: ").strip())
 
-            if not 1 <= choice <= 2:
+            if not 1 <= choice <= 3:
                 print("\nPlease choose a number between 1 and 2.")
                 continue
         except ValueError:
@@ -72,6 +84,8 @@ def main():
             case 1:
                 add_student()
             case 2:
+                show_students()
+            case 3:
                 print("\nGoodbye!")
                 break
 
