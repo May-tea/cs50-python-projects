@@ -11,7 +11,8 @@ def display_menu() -> None:
 
 1. Add student
 2. Show students
-3. Exit          
+3. Search student
+4. Exit          
 """)
 
 
@@ -66,6 +67,23 @@ def show_students() -> None:
         print(student)
 
 
+def search_student() -> None:
+    query: str = input("\nSearch by name: ").strip()
+
+    if not validate_name(query):
+        print("\nInvalid search query.")
+        return
+
+    students: list[Student] = school.search_student(query)
+
+    if not students:
+        print("\nNo students found.")
+        return
+
+    for student in students:
+        print(student)
+
+
 def main() -> None:
     while True:
         display_menu()
@@ -73,8 +91,8 @@ def main() -> None:
         try:
             choice: int = int(input("\nChoose an option: ").strip())
 
-            if not 1 <= choice <= 3:
-                print("\nPlease choose a number between 1 and 2.")
+            if not 1 <= choice <= 4:
+                print("\nPlease choose a number between 1 and 4.")
                 continue
         except ValueError:
             print("\nInvalid input. Please try again.")
@@ -86,6 +104,8 @@ def main() -> None:
             case 2:
                 show_students()
             case 3:
+                search_student()
+            case 4:
                 print("\nGoodbye!")
                 break
 
