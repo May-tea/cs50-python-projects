@@ -1,5 +1,5 @@
 import statistics
-from student import Student
+from src.student import Student
 
 
 class School:

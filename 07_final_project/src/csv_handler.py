@@ -1,6 +1,6 @@
 import csv
 
-from student import Student
+from src.student import Student
 
 FIELD_NAMES: list[str] = ["name", "age", "email", "score"]
 
