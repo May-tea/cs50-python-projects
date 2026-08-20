@@ -15,7 +15,8 @@ def display_menu() -> None:
 4. Delete student
 5. Edit student
 6. Sort students by score
-7. Exit          
+7. Show average score
+8. Exit          
 """)
 
 
@@ -184,6 +185,16 @@ def sort_students() -> None:
         print(student)
 
 
+def show_average_score() -> None:
+    if not school.get_students():
+        print("\nStudents list is empty.")
+        return
+
+    average_score: float = school.get_average_score()
+
+    print(f"\nAverage score: {average_score:.2f}")
+
+
 def main() -> None:
     while True:
         display_menu()
@@ -191,8 +202,8 @@ def main() -> None:
         try:
             choice: int = int(input("\nChoose an option: ").strip())
 
-            if not 1 <= choice <= 7:
-                print("\nPlease choose a number between 1 and 7.")
+            if not 1 <= choice <= 8:
+                print("\nPlease choose a number between 1 and 8.")
                 continue
         except ValueError:
             print("\nInvalid input. Please try again.")
@@ -212,6 +223,8 @@ def main() -> None:
             case 6:
                 sort_students()
             case 7:
+                show_average_score()
+            case 8:
                 print("\nGoodbye!")
                 break
 
