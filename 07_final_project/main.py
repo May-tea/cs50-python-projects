@@ -13,7 +13,8 @@ def display_menu() -> None:
 2. Show students
 3. Search student
 4. Delete student
-5. Exit          
+5. Edit student
+6. Exit          
 """)
 
 
@@ -112,6 +113,65 @@ def delete_student() -> None:
     print(f"\nStudent '{student.name}' deleted successfully.")
 
 
+def edit_student() -> None:
+    students: list[Student] = school.get_students()
+
+    if not students:
+        print("\nStudents list is empty.")
+        return
+
+    for index, student in enumerate(students, start=1):
+        print(f"{index}. {student}")
+
+    try:
+        choice: int = int(input("\nChoose a student to edit: ").strip())
+
+        if not 1 <= choice <= len(students):
+            print("\nInvalid student number.")
+            return
+    except ValueError:
+        print("\nInvalid input. Please try again.")
+        return
+
+    student: Student = school.get_student(choice - 1)
+
+    new_name: str = input("\nNew name: ").strip()
+
+    if not validate_name(new_name):
+        print("\nInvalid name.")
+        return
+
+    try:
+        new_age: int = int(input("\nNew age: ").strip())
+    except ValueError:
+        print("\nInvalid input. Please try again.")
+        return
+
+    if not validate_age(new_age):
+        print("\nInvalid age.")
+        return
+
+    new_email: str = input("\nNew email: ").strip()
+
+    if not validate_email(new_email):
+        print("\nInvalid email.")
+        return
+
+    try:
+        new_score: float = float(input("\nNew score: ").strip())
+    except ValueError:
+        print("\nInvalid input. Please try again.")
+        return
+
+    if not validate_score(new_score):
+        print("\nInvalid score.")
+        return
+
+    school.edit_student(student, new_name, new_age, new_email, new_score)
+
+    print(f"\nStudent '{student.name}' updated successfully.")
+
+
 def main() -> None:
     while True:
         display_menu()
@@ -119,8 +179,8 @@ def main() -> None:
         try:
             choice: int = int(input("\nChoose an option: ").strip())
 
-            if not 1 <= choice <= 5:
-                print("\nPlease choose a number between 1 and 5.")
+            if not 1 <= choice <= 6:
+                print("\nPlease choose a number between 1 and 6.")
                 continue
         except ValueError:
             print("\nInvalid input. Please try again.")
@@ -136,6 +196,8 @@ def main() -> None:
             case 4:
                 delete_student()
             case 5:
+                edit_student()
+            case 6:
                 print("\nGoodbye!")
                 break
 
