@@ -1,6 +1,9 @@
 from src.school import School
 from src.student import Student
+from src.csv_handler import save_to_csv
 from src.validators import validate_name, validate_age, validate_email, validate_score
+
+CSV_FILE: str = "data/students.csv"
 
 school: School = School()
 
@@ -16,7 +19,8 @@ def display_menu() -> None:
 5. Edit student
 6. Sort students by score
 7. Show average score
-8. Exit          
+8. Save students
+9. Exit          
 """)
 
 
@@ -195,6 +199,18 @@ def show_average_score() -> None:
     print(f"\nAverage score: {average_score:.2f}")
 
 
+def save_students() -> None:
+    students: list[Student] = school.get_students()
+
+    if not students:
+        print("\nStudents list is empty.")
+        return
+
+    save_to_csv(students, CSV_FILE)
+
+    print("\nStudents saved successfully.")
+
+
 def main() -> None:
     while True:
         display_menu()
@@ -202,8 +218,8 @@ def main() -> None:
         try:
             choice: int = int(input("\nChoose an option: ").strip())
 
-            if not 1 <= choice <= 8:
-                print("\nPlease choose a number between 1 and 8.")
+            if not 1 <= choice <= 9:
+                print("\nPlease choose a number between 1 and 9.")
                 continue
         except ValueError:
             print("\nInvalid input. Please try again.")
@@ -225,6 +241,8 @@ def main() -> None:
             case 7:
                 show_average_score()
             case 8:
+                save_students()
+            case 9:
                 print("\nGoodbye!")
                 break
 
