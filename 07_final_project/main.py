@@ -1,11 +1,19 @@
 from src.school import School
 from src.student import Student
-from src.csv_handler import save_to_csv
+from src.csv_handler import save_to_csv, load_from_csv
 from src.validators import validate_name, validate_age, validate_email, validate_score
 
 CSV_FILE: str = "data/students.csv"
 
 school: School = School()
+
+try:
+    students: list[Student] = load_from_csv(CSV_FILE)
+except FileNotFoundError:
+    students = []
+
+for student in students:
+    school.add_student(student)
 
 
 def display_menu() -> None:
