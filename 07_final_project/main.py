@@ -14,7 +14,8 @@ def display_menu() -> None:
 3. Search student
 4. Delete student
 5. Edit student
-6. Exit          
+6. Sort students by score
+7. Exit          
 """)
 
 
@@ -172,6 +173,17 @@ def edit_student() -> None:
     print(f"\nStudent '{student.name}' updated successfully.")
 
 
+def sort_students() -> None:
+    students: list[Student] = school.sort_students_by_score()
+
+    if not students:
+        print("\nStudents list is empty.")
+        return
+
+    for student in students:
+        print(student)
+
+
 def main() -> None:
     while True:
         display_menu()
@@ -179,8 +191,8 @@ def main() -> None:
         try:
             choice: int = int(input("\nChoose an option: ").strip())
 
-            if not 1 <= choice <= 6:
-                print("\nPlease choose a number between 1 and 6.")
+            if not 1 <= choice <= 7:
+                print("\nPlease choose a number between 1 and 7.")
                 continue
         except ValueError:
             print("\nInvalid input. Please try again.")
@@ -198,6 +210,8 @@ def main() -> None:
             case 5:
                 edit_student()
             case 6:
+                sort_students()
+            case 7:
                 print("\nGoodbye!")
                 break
 
