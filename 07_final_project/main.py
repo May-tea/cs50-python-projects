@@ -214,7 +214,11 @@ def save_students() -> None:
         print("\nStudents list is empty.")
         return
 
-    save_to_csv(students, CSV_FILE)
+    try:
+        save_to_csv(students, CSV_FILE)
+    except OSError:
+        print("\nFailed to save students.")
+        return
 
     print("\nStudents saved successfully.")
 
